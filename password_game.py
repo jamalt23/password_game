@@ -1,5 +1,5 @@
 import time; from string import punctuation; import pyperclip
-print("Original game: neal.fun/password-game \n\nMADE BY JAMAL\n")
+print("Original game: neal.fun/password-game")
 a="0";languages=[["english","eng"],["russian","ru"]];game = True
 days=["понедельник","вторник","среда","четверг","пятница","суббота","воскресенье","monday","tuesday","wednesday","thursday","friday","saturday","sunday"]
 lang=(input("Select language(Russian/English): ")).lower()
