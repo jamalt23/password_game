@@ -1,14 +1,17 @@
-import time; from string import punctuation; import pyperclip;
+import time; from string import punctuation; import pyperclip
 print("Original game: neal.fun/password-game \n\nMADE BY JAMAL\n")
-a="0";languages=[["english","eng"],["russian","ru"]]
+a="0";languages=[["english","eng"],["russian","ru"]];game = True
 days=["понедельник","вторник","среда","четверг","пятница","суббота","воскресенье","monday","tuesday","wednesday","thursday","friday","saturday","sunday"]
 lang=(input("Select language(Russian/English): ")).lower()
 if lang!='quit':
     while (not lang in languages[0]) and (not lang in languages[1]):
         print("Invalid: You are Invalid")
         lang=(input("Select language(Russian/English): ")).lower()
+else:
+    print('Good bye!')
+    quit()
 if lang in languages[0]:
-    length="Length";i_p="Enter your password: ";ent_name="Enter your name: "
+    length="Length";ent_password="Enter your password: ";ent_name="Enter your name: "
     signup="Sign up";login="Log in";lose="Your password is wrong.";gameover="Game over.";print(signup)
     name = input(ent_name);win=f"Successful! Welcome, {name}.\nYou won!"
     rule1="Your password must be at least 8 characters"
@@ -25,7 +28,7 @@ if lang in languages[0]:
     rule12="Your password must include the current time backwards (Example: 01:02 -> 20:10)"
     confirm="Do you confirm that this is your password?(Yes or Yes) "
 elif lang in languages[1]:
-    length="Длина";i_p="Введите пароль: ";ent_name="Введите ваше имя: "
+    length="Длина";ent_password="Введите пароль: ";ent_name="Введите ваше имя: "
     signup="Регистрация";login="Вход";lose="Неверный пароль.";gameover="Игра окончена.";print(signup)
     name = input(ent_name);win=f"Успешно! Добро пожаловать, {name}.\nВы победили!"
     rule1="Ваш пароль должен быть не менее 8 символов в длину"
@@ -41,8 +44,8 @@ elif lang in languages[1]:
     rule11="Длина вашего пароля должна быть чётным числом"
     rule12="Ваш пароль должен содержать текущее время наоборот (Пример: 01:02 -> 20:10)"
     confirm="Вы подтверждаете что это ваш пароль?(Да или Да) "
-a = input(i_p)
-if True:
+a = input(ent_password)
+if "functions":
     def contain_digit(x):
         for char in x:
             if char.isdigit():
@@ -99,66 +102,67 @@ if True:
         for i in range(25):
             print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
 #Monday2023001Jamal028!🔑95:71
-while True:
+while game:
     pyperclip.copy(a)
     print(a) if a!="quit" else print("Game over.")
-    if a=='quit': break
+    if a=='quit': print('Game over.');quit()
     elif len(a)<8:
         print(f"{length}: {len(a)}")
         print(rule1)
-        a = input(i_p)
+        a = input(ent_password)
     elif contain_digit(a)!="True": 
         print(f"{length}: {len(a)}")
         print(rule2)
-        a = input(i_p)
+        a = input(ent_password)
     elif contain_upper(a)!="True": 
         print(f"{length}: {len(a)}")
         print(rule3)
-        a = input(i_p)
+        a = input(ent_password)
     elif contain_punctuation(a)!="True":
         print(f"{length}: {len(a)}")
         print(rule4)
-        a = input(i_p)
+        a = input(ent_password)
     elif digits_summ(a)!=40:
         print(f"{length}: {len(a)}")
         print(rule5)
-        a = input(i_p)
+        a = input(ent_password)
     elif contain_day(a)!="True":
         print(f"{length}: {len(a)}")
         print(rule6)
-        a = input(i_p)
+        a = input(ent_password)
     elif contain_year(a)!="True": 
         print(f"{length}: {len(a)}")
         print(rule7)
-        a = input(i_p)
+        a = input(ent_password)
     elif not str(len(a)) in a:
         print(f"{length}: {len(a)}")
         print(rule8)
-        a = input(i_p)
+        a = input(ent_password)
     elif not "🔑" in a:
         print(f"{length}: {len(a)}")
         print(rule9)
-        a = input(i_p)
-    elif (not name in a) and (not name.lower in a):
+        a = input(ent_password)
+    elif (not name in a) and (not name.lower() in a):
         print(f"{length}: {len(a)}")
         print(rule10)
-        a = input(i_p)
+        a = input(ent_password)
     elif even_length(a)!="True":
         print(f"{length}: {len(a)}")
         print(rule11)
-        a = input(i_p)
+        a = input(ent_password)
     elif contain_time(a)!="True":
         print(f"{length}: {len(a)}")
         print(rule12)
-        a = input(i_p)  
+        a = input(ent_password)  
     else:
+        game = False
         break
-if a!='quit':
+if not game:
     answer = (input(confirm)).lower()
     if (answer=="yes") or (answer=="да"):
         cl();pyperclip.copy('')
         print(login)
-        pw = input(i_p)
+        pw = input(ent_password)
         if pw!=a:
             print(lose);print(gameover)
         else:
