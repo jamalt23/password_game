@@ -101,7 +101,7 @@ if "functions":
     def cl():
         for i in range(25):
             print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
-#Monday2023001Jamal028!🔑95:71
+#Monday2024001Jamal028!🔑95:71
 while game:
     pyperclip.copy(a)
     print(a) if a!="quit" else print("Game over.")
