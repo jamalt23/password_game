@@ -1,4 +1,10 @@
-import time; from string import punctuation; import pyperclip
+import time, pyperclip
+from string import punctuation
+from os import system
+
+clear_terminal = lambda: system('clear')
+clear_clipboard = lambda: pyperclip.copy('')
+
 print("Original game: neal.fun/password-game")
 a="0";languages=[["english","eng"],["russian","ru"]];game = True
 days=["понедельник","вторник","среда","четверг","пятница","суббота","воскресенье","monday","tuesday","wednesday","thursday","friday","saturday","sunday"]
@@ -97,11 +103,7 @@ if "functions":
     def even_length(x):
         lx=len(x)
         if (lx%2)==0:
-            return "True"
-    def cl():
-        for i in range(25):
-            print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
-#Monday2024001Jamal028!🔑95:71
+            return "True"#Monday2024001Jamal028!🔑95:71
 while game:
     pyperclip.copy(a)
     print(a) if a!="quit" else print("Game over.")
@@ -160,7 +162,8 @@ while game:
 if not game:
     answer = (input(confirm)).lower()
     if (answer=="yes") or (answer=="да"):
-        cl();pyperclip.copy('')
+        clear_terminal()
+        clear_clipboard()
         print(login)
         pw = input(ent_password)
         if pw!=a:
