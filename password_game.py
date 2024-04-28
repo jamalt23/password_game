@@ -1,11 +1,13 @@
-import time, pyperclip
+import pyperclip
 from string import punctuation
 from os import system
+from datetime import datetime
 
 clear_terminal = lambda: system('clear')
 clear_clipboard = lambda: pyperclip.copy('')
 
 print("Original game: neal.fun/password-game")
+current_year = str(datetime.now().year)
 a="0";languages=[["english","eng"],["russian","ru"]];game = True
 days=["понедельник","вторник","среда","четверг","пятница","суббота","воскресенье","monday","tuesday","wednesday","thursday","friday","saturday","sunday"]
 lang=(input("Select language(Russian/English): ")).lower()
@@ -51,59 +53,18 @@ elif lang in languages[1]:
     rule12="Ваш пароль должен содержать текущее время наоборот (Пример: 01:02 -> 20:10)"
     confirm="Вы подтверждаете что это ваш пароль?(Да или Да) "
 a = input(ent_password)
-if "functions":
-    def contain_digit(x):
-        for char in x:
-            if char.isdigit():
-                return "True"
-                break
-    def contain_upper(x):
-        for char in x:
-            if char.isupper():
-                return "True"
-                break
-    def contain_punctuation(x):
-        for char in x:    
-            if char in punctuation:
-                return "True"
-                break
-    def digits_summ(x):
-        total = 0
-        for char in x:
-            if char.isdigit():
-                total += int(char)
-        return total
-    def contain_day(x):
-        for i in days:
-            if i in x.lower():
-                return "True"; break
-        y="";z=""
-        if y in x or z in x:
-            return "False"
-    def contain_year(x):
-        s=int(time.time())
-        res = time.localtime(s)
-        year = str(res.tm_year)
-        if year in x:
-            return "True"
-    def contain_time(x):
-        import time
-        s=int(time.time())
-        res = time.localtime(s)
-        hour = (res.tm_hour)
-        min = (res.tm_min)
-        if min<10:
-            min = "0"+str(min)
-        if hour<10:
-            hour = "0"+str(hour)
-        min=str(min);hour=str(hour)
-        time=f"{min[::-1]}:{hour[::-1]}"
-        if time in x:
-            return "True"
-    def even_length(x):
-        lx=len(x)
-        if (lx%2)==0:
-            return "True"#Monday2024001Jamal028!🔑95:71
+
+contain_digit = lambda x: any(char.isdigit() for char in x)
+contain_upper = lambda x: any(char.isupper() for char in x)
+contain_punctuation = lambda x: any(char in punctuation for char in x)
+digits_summ = lambda x: sum(int(char) for char in x)
+contain_day = lambda x: any(day in x for day in days)
+contain_year = lambda x: current_year in x
+even_length = lambda x: len(x)%2==0
+contain_time = lambda x: datetime.now().strftime("%H:%M")[::-1] in x
+
+#Monday2024001Jamal028!🔑95:71
+
 while game:
     pyperclip.copy(a)
     print(a) if a!="quit" else print("Game over.")
@@ -112,27 +73,27 @@ while game:
         print(f"{length}: {len(a)}")
         print(rule1)
         a = input(ent_password)
-    elif contain_digit(a)!="True": 
+    elif not contain_digit(a): 
         print(f"{length}: {len(a)}")
         print(rule2)
         a = input(ent_password)
-    elif contain_upper(a)!="True": 
+    elif not contain_upper(a): 
         print(f"{length}: {len(a)}")
         print(rule3)
         a = input(ent_password)
-    elif contain_punctuation(a)!="True":
+    elif not contain_punctuation(a):
         print(f"{length}: {len(a)}")
         print(rule4)
         a = input(ent_password)
-    elif digits_summ(a)!=40:
+    elif not digits_summ(a)!=40:
         print(f"{length}: {len(a)}")
         print(rule5)
         a = input(ent_password)
-    elif contain_day(a)!="True":
+    elif not contain_day(a):
         print(f"{length}: {len(a)}")
         print(rule6)
         a = input(ent_password)
-    elif contain_year(a)!="True": 
+    elif not contain_year(a): 
         print(f"{length}: {len(a)}")
         print(rule7)
         a = input(ent_password)
@@ -148,11 +109,11 @@ while game:
         print(f"{length}: {len(a)}")
         print(rule10)
         a = input(ent_password)
-    elif even_length(a)!="True":
+    elif not even_length(a):
         print(f"{length}: {len(a)}")
         print(rule11)
         a = input(ent_password)
-    elif contain_time(a)!="True":
+    elif not contain_time(a):
         print(f"{length}: {len(a)}")
         print(rule12)
         a = input(ent_password)  
