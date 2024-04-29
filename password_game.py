@@ -7,7 +7,6 @@ clear_terminal = lambda: system('clear')
 clear_clipboard = lambda: pyperclip.copy('')
 
 print("Original game: neal.fun/password-game")
-game = True
 days = ["понедельник","вторник","среда","четверг","пятница","суббота","воскресенье",
         "monday","tuesday","wednesday","thursday","friday","saturday","sunday"]
 lang=(input("Select language(Russian/English): ")).lower()
@@ -103,10 +102,9 @@ class Password:
 
     def check_rules(self: object) -> bool | str:
         for rule in self.rules:
-            ruleindex = self.rules.index(rule)+1
-            # print(f"{messages[f'rule{ruleindex}']}: {rule}")
+            rule_message = messages[f'rule{self.rules.index(rule)+1}']
             if not rule:
-                return messages[f'rule{ruleindex}']
+                return rule_message
         return True
 
 password = Password(input(messages['ent_password']))
@@ -115,22 +113,19 @@ while True:
     pyperclip.copy(password.password)
     print(password) if password!="quit" else print("Game over.")
     if password.is_valid():
-        print(messages['win'])
         break
     else:
         print(password.check_rules())
         password = Password(input(messages['ent_password']))
 
-if not game:
-    answer = (input(messages['confirm'])).lower()
-    if answer in ('yes', 'y', 'да'):
-        clear_terminal()
-        clear_clipboard()
-        print(messages['login'])
-        pw = input(messages['ent_password'])
-        if pw!=password:
-            print(messages['lose']);print(messages['gameover'])
-        else:
-            print(messages['win'])
+answer = (input(messages['confirm'])).lower()
+if answer in ('yes', 'y', 'да'):
+    clear_terminal()
+    clear_clipboard()
+    print(messages['login'])
+    if input(messages['ent_password'])!=password:
+        print(messages['lose'], messages['gameover'], sep='\n')
     else:
-        print(messages['gameover'])
+        print(messages['win'])
+else:
+    print(messages['gameover'])
